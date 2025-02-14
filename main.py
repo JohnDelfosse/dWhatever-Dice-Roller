@@ -50,7 +50,7 @@ def rollD100(amountOfD100, totalSum):
         totalSum += roll
     return totalSum
         
-def rollDice(amountOfD4, amountOfD6, amountOfD8, amountOfD10, amountOfD12, amountOfD20, amountOfD100):
+def rollDice(amountOfD4, amountOfD6, amountOfD8, amountOfD10, amountOfD12, amountOfD20, amountOfD100, modifierVar):
     total = 0
     total = rollD4(amountOfD4, total)
     total = rollD6(amountOfD6, total)
@@ -60,6 +60,9 @@ def rollDice(amountOfD4, amountOfD6, amountOfD8, amountOfD10, amountOfD12, amoun
     total = rollD20(amountOfD20, total)
     total = rollD100(amountOfD100, total)
     print("Total of all rolls: ", total)
+    print("==============================")
+    print("Modifier: ", modifierVar)
+    print("Total with modifier: ", total + modifierVar)
     return
 
 print("Welcome to the DND Dice Roller!")
@@ -69,6 +72,7 @@ print("**INSTRUCTIONS**")
 print("You can roll d4, d6, d8, d10, d12, d20, and d100.")
 print("You can roll up to 10 of each. Type 0 for any you don't want to roll.")
 print("After you pick the amount of dice in each group, we'll list each roll and sum their total.")
+print("We'll also add a modifier of your choice from -100 to 100")
 print(" ")
 ### Validate input
 
@@ -142,7 +146,17 @@ while True:
             print("Invalid input. Try again.")
     except:
         print("Please provide an integer.")
+## Deciding the modifier
+while True:
+    try:
+        modifier = int(input("Input the modifier (anything from -100 to 100): "))
+        if(modifier >= -100 and modifier <= 100):
+            break
+        else:
+            print("Invalid input. Try again.")
+    except:
+        print("Please provide an integer.")
         
 
 
-rollDice(numberOfD4s, numberOfD6s, numberOfD8s, numberOfD10s, numberOfD12s, numberOfD20s, numberOfD100s)
+rollDice(numberOfD4s, numberOfD6s, numberOfD8s, numberOfD10s, numberOfD12s, numberOfD20s, numberOfD100s, modifier)
